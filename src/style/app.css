@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+}
+
+.contain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contain .outside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  margin: 20px 0px;
+}
+.contain .outside input {
+  width: 50%;
+  border-radius: 10px;
+  border: 2px solid #bbb;
+  padding: 0px 20px;
+}
+.contain .outside input:focus {
+  outline: #3ecf7a 2px solid;
+  border: transparent 2px solid;
+}
+.contain .outside button {
+  width: 100px;
+  margin: 0px 10px;
+  border-radius: 10px;
+  border: 2px solid #bbb;
+  background-color: #bbb;
+}
+.contain .outside button:hover {
+  transform: scale(1.1);
+}
+.contain .outside button:active {
+  transform: scale(0.8);
+}
+.contain .outside div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=app.css.map */
