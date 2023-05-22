@@ -12,13 +12,21 @@ function App() {
   const putProperty = useRef();
   const putStartDate = useRef();
   const putEndDate = useRef();
+  const addStarsign = useRef();
+  const addProperty = useRef();
+  const addStartDate = useRef();
+  const addEndDate = useRef();
 
 
 
 
   // //Get Data
-  const getData = () => {
-    return req("get", "/getData")
+  const getData = (getID) => {
+    if (getID) {
+      return req("get", `/getData/${getID}`)
+    } else {
+      return req("get", "/getData")
+    }
   }
 
   useEffect(() => {
@@ -29,7 +37,7 @@ function App() {
     })
   }, []);
 
-  // console.log(item)
+  console.log(...item)
 
 
   //新增
@@ -38,23 +46,31 @@ function App() {
     return req("post", "/postData", postData)
   }
 
-  // useEffect(() => {
-  //   apiUrlPost(
-  //     {
-  //       "starsign": "321321321",
-  //       "property": "嘿嘿嘿嘿",
-  //       "startDate": "2023年6月22日",
-  //       "endDate": "2023年8月22日------------------------------------",
-  //     }
-  //   )
-  //     .then(res => {
-  //       console.log("輸入成功");
-  //     })
-  //     .catch(error => {
-  //       // response攔截器會先執行，除非你漏接了，才會進到catch
-  //     })
-  // }, [])
+  const addUrl = () => {
 
+    const Starsign = addStarsign.current.value;
+    const Property = addProperty.current.value;
+    const StartDate = addStartDate.current.value;
+    const EndDate = addEndDate.current.value;
+
+
+    apiUrlPost( {
+      'starsign': Starsign?`${Starsign}`:"",
+      'property': Property?`${Property}`:"",
+      'startDate': StartDate?`${StartDate}`:"",
+      'endDate': EndDate?`${EndDate}`:""
+    })
+      .then(res => { 
+        console.log("新增成功"); 
+        alert('新增成功')
+      })
+      .catch(error => {
+        // response攔截器會先執行，除非你漏接了，才會進到catch
+        console.log("新增失敗");
+      })
+
+   
+  }
 
   //更新
   const userPut = (putID, putValue) => {
@@ -97,18 +113,23 @@ function App() {
 
 
     userDelete(DeleteValue)
-      .then(res => { console.log("刪除成功"); })
+      .then(res => { console.log("刪除成功"); alert("刪除成功")})
       .catch(error => {
         // response攔截器會先執行，除非你漏接了，才會進到catch
         console.log("刪除失敗");
       })
   }
 
+
+
   return (
     <div className='contain'>
       <div className='outside'>
-        <input type="text" />
-        <button onClick={apiUrlPost}>ADD</button>
+        <div>starsign<input type="text" ref={addStarsign} /></div>
+        <div>property<input type="text" ref={addProperty} /></div>
+        <div>startDate<input type="text" ref={addStartDate} /></div>
+        <div>endDate<input type="text" ref={addEndDate} /></div>
+        <button onClick={addUrl}>ADD</button>
       </div>
       <div className='outside'>
         <input type="text" ref={DeleteRef} />
