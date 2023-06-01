@@ -9,45 +9,44 @@
   height: 100%;
 }
 
+.center, .contain .user, .contain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.border, .contain .user_check, .contain .user_input {
+  border: 1px solid #bbb;
+  border-radius: 10px;
+}
+
 .contain {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-.contain .outside {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.contain .user {
   width: 100%;
-  height: 20%;
-  margin: 20px 0px;
+  height: 10%;
 }
-.contain .outside input {
-  width: 50%;
-  border-radius: 10px;
-  border: 2px solid #bbb;
-  padding: 0px 20px;
+.contain .user_input {
+  width: 80%;
 }
-.contain .outside input:focus {
-  outline: #3ecf7a 2px solid;
-  border: transparent 2px solid;
+.contain .user_input:focus {
+  border: 0px;
+  outline: 3px green dashed;
 }
-.contain .outside button {
+.contain .user_check {
+  margin-left: 50px;
   width: 100px;
-  margin: 0px 10px;
-  border-radius: 10px;
-  border: 2px solid #bbb;
-  background-color: #bbb;
 }
-.contain .outside button:hover {
-  transform: scale(1.1);
+.contain .user_check:hover {
+  scale: 1.05;
 }
-.contain .outside button:active {
-  transform: scale(0.8);
+.contain .user_check:active {
+  scale: 1;
 }
-.contain .outside div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.contain .output {
+  width: 80%;
+  height: 10%;
+  margin-top: 10px;
+  padding: 10px;
 }/*# sourceMappingURL=app.css.map */
