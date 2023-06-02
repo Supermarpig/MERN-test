@@ -15,81 +15,106 @@ function App() {
 
 
 
+  useEffect(() => {
+    getData().then((result) => {
+      setItem(result.data)
+    }).catch(err => {
+      console.log(err);
+    })
+  }, []);
+
+
+
   //獲取 user輸入的Url
   const shortUrl = () => {
     const longUrl = user_input.current.value;
 
+    //把item清空
+    setItem([]);
+
     //先判斷是否有相同的url---------------------------------------------------------------
 
+    getData().then((result) => {
+
+      let newArray = [];
+      newArray = [...result.data];
+      setItem(newArray);
+    }).catch(err => {
+      console.log(err);
+    })
+
+
+    console.log(item)
     //將全部的lonUrl丟進這個array
-    const urlArray = item.map(item => item.longUrl);
 
-
+    let urlArray = item.map(item => item.longUrl);
     let hasUrl = urlArray.includes(longUrl);
+
+
+    console.log(hasUrl, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
     //如果有一個url 
     if (hasUrl) {
-      getUrl(longUrl).then((result) => {
-        // console.log(result.data._id)
-        setChangeUrl(result.data._id);
-        alert('已有相同Url');
-        let oldUrl = result.data._id
-
-        //將獲取的ID 弄成短網址
-        // 生成固定的、加密的短網址（例如，長度為 6 位）
-        oldUrl && generateShortUrl(oldUrl, 6)
-          .then(shortUrlTest => {
-            // console.log(shortUrlTest);
-            setShort(shortUrlTest);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }).catch(err => {
-        console.log(err);
-      })
+      getDataCheck();
 
     }
 
     //如果沒東西就新增
-    if (!hasUrl) {
+    else if (!hasUrl) {
 
-      console.log("object")
-      // //先將user 輸入的網址 新增資料庫---------------------------------------------------------------
-      // apiUrlPost({
-      //   'title': "",
-      //   'description': "",
-      //   'imageUrl': "",
-      //   'longUrl': longUrl ? `${longUrl}` : "",
-      //   'shortUrl': ""
-      // })
-      //   .then(res => {
-      //     // console.log("新增成功");
-      //     alert('新增成功')
-      //   })
-      //   .catch(error => {
-      //     // response攔截器會先執行，除非你漏接了，才會進到catch
-      //     console.log("新增失敗");
-      //   })
+      if (hasUrl) {
 
-      // //然後傳 _ID回來---------------------------------------------------------------
+      } else {
+        //先將user 輸入的網址 新增資料庫---------------------------------------------------------------
+        apiUrlPost({
+          'title': "",
+          'description': "",
+          'imageUrl': "",
+          'longUrl': longUrl ? `${longUrl}` : "",
+          'shortUrl': ""
+        })
+          .then(res => {
+            // console.log("新增成功");
+            getData().then((result) => {
 
-      // getUrl(longUrl).then((result) => {
-      //   console.log(result.data._id)
-      //   setChangeUrl(result.data._id);
+              let newArray = [];
+              newArray = [...result.data];
+              setItem(newArray);
+            }).catch(err => {
+              console.log(err);
+            })
+            alert('新增成功')
+          })
+          .catch(error => {
+            // response攔截器會先執行，除非你漏接了，才會進到catch
+            console.log("新增失敗");
+          })
 
-      //   //將獲取的ID 弄成短網址
-      //   // 生成固定的、加密的短網址（例如，長度為 6 位）
-      //   generateShortUrl(changeUrl, 6)
-      //     .then(shortUrlTest => {
-      //       console.log(shortUrlTest);
-      //     })
-      //     .catch(error => {
-      //       console.error(error);
-      //     });
-      // }).catch(err => {
-      //   console.log(err);
-      // })
-      // //然後在將短網址寫入剛剛那格資料庫後面---------------------------------------------------------------
+        //然後傳 _ID回來---------------------------------------------------------------
+
+        setTimeout(() => {
+          getUrl(longUrl).then((result) => {
+            // console.log(result)
+            // setChangeUrl(result.data._id);
+            let oldUrl = result.data._id
+
+            //將獲取的ID 弄成短網址
+            // 生成固定的、加密的短網址（例如，長度為 6 位）
+            oldUrl && generateShortUrl(oldUrl, 6)
+              .then(shortUrlTest => {
+                // console.log(shortUrlTest);
+                setShort(shortUrlTest);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          }).catch(err => {
+            console.log(err);
+          })
+        }, 500);
+
+      }
+      //然後在將短網址寫入剛剛那格資料庫後面---------------------------------------------------------------
     }
 
   }
@@ -97,18 +122,36 @@ function App() {
 
 
 
-  useEffect(() => {
-    getData().then((result) => {
-      setItem(result.data)
+
+
+
+  // 確認Url 是否存在
+  function getDataCheck() {
+
+    const longUrl = user_input.current.value;
+
+    getUrl(longUrl).then((result) => {
+      // console.log(result.data._id)
+      setChangeUrl(result.data._id);
+      alert('已有相同Url');
+      let oldUrl = result.data._id
+
+
+      //將獲取的ID 弄成短網址
+      // 生成固定的、加密的短網址（例如，長度為 6 位）
+      oldUrl && generateShortUrl(oldUrl, 6)
+        .then(shortUrlTest => {
+          // console.log(shortUrlTest);
+          setShort(shortUrlTest);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
     }).catch(err => {
       console.log(err);
     })
-
-
-  }, []);
-
-  // console.log(item)
-
+  }
 
   //依照 資料庫的ID 生成加密亂碼
   // --------------------------------------------------------------------------------------
@@ -250,13 +293,17 @@ function App() {
       <div className='user'>
         <input className='user_input' type="text" ref={user_input}></input>
         <button className='user_check' onClick={shortUrl}>click</button>
-      </div>
 
-      {short && (
-        <div className='output'>
-          <a href={`http://127.0.0.1:5173/${short}`}>{`http://127.0.0.1:5173/${short}`}</a>
-        </div>
-      )}
+
+      </div>
+      <div className='user_output'>
+        {short && (
+          <div className='user_output_div'>
+            <a href={`http://127.0.0.1:5173/${short}`}>{`http://127.0.0.1:5173/${short}`}</a>
+          </div>
+        )}
+
+      </div>
 
     </div>
   )
