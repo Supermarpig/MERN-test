@@ -1,11 +1,15 @@
 import axios from 'axios';
 
 const urlRequest = axios.create({
-    baseURL: 'http://localhost:3001/api/'
+  baseURL: 'http://localhost:3001/api/'
+});
+
+const shortUrlRequest = axios.create({
+  baseURL: 'http://localhost:3001/'
 });
 
 // 此處的urlRequest為我們create的實體
-export default function(method, url, data = null, config) {
+export function sendRequest(method, url, data = null, config) {
     method = method.toLowerCase(); //轉成全部小寫
     switch (method) {
       case "post":
@@ -24,5 +28,9 @@ export default function(method, url, data = null, config) {
     }
   }
 
+  export function sendShortUrlRequest(method, url, data = null, config) {
+    method = method.toLowerCase(); //轉成全部小寫
+    return shortUrlRequest.get(url, data, config);
+  }
 
   
