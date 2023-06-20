@@ -122,8 +122,10 @@ function App() {
 
                   //一分鐘後刪除這筆資料
                   setTimeout(() => {
-                    userDelete(oldUrl)
-                    alert(`刪除一筆${oldUrl}`)
+                    userDelete(oldUrl);
+                    alert(`刪除一筆${oldUrl}`);
+                    setShort('');
+                    // console.log(`刪除一筆${oldUrl}`)
                   }, 30000)
 
 
@@ -242,18 +244,18 @@ function App() {
   }
 
 
-  //點擊短網址的function 
-  const longUrl = () => {
+  // //點擊短網址的function 
+  // const longUrl = () => {
 
-    getLLongUrl(changeUrl).then((result) => {
-      // console.log(result.data)
-      window.location.href = result.data;
-    }).catch(err => {
-      console.log(err);
-    })
+  //   getLLongUrl(changeUrl).then((result) => {
+  //     // console.log(result.data)
+  //     window.location.href = result.data;
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
 
 
-  }
+  // }
 
   // --------------------------------------------------------------------------------------
 
@@ -307,8 +309,8 @@ function App() {
       <div className='user_output'>
         {short && (
           <div className='user_output_div'>
-            {/* <a href={`${domainName}${short}`} onClick={longUrl}>{`${domainName}${short}`}</a> */}
-            <div onClick={longUrl}>{`${domainName}${short}`}</div>
+            <a href={`${domainName}${short}`} >{`${domainName}${short}`}</a>
+            {/* <div onClick={longUrl}>{`${domainName}${short}`}</div> */}
           </div>
         )}
 
