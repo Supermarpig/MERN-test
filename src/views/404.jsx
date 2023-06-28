@@ -16,7 +16,7 @@ function CustomNotFound() {
           ))}
         </div>
 
-        <div className={styles.textcontainer}>
+        <div className={styles.text_container}>
           <h1>
             {/* 404 not found text */}
             {[...notFound].map((char, index) => (
@@ -27,9 +27,6 @@ function CustomNotFound() {
           </h1>
 
           {/* back to home text */}
-          {/* <div> */}
-          {/* <Link to="/home">點擊這裡回到首頁</Link> */}
-          {/* </div> */}
           <div className={styles.back2home}>
             <Link to="/home">
               {[...backToHome].map((char, index) => (
@@ -43,12 +40,12 @@ function CustomNotFound() {
 
         {/* astronaut */}
         <div className={styles.boi}>
-          <div className={styles.rightleg}></div>
-          <div className={styles.leftleg}></div>
+          <div className={styles.right_leg}></div>
+          <div className={styles.left_leg}></div>
           <div className={styles.backpack}></div>
           <div className={styles.belly}></div>
           <div className={styles.eye}></div>
-          <div className={styles.leftleg}></div>
+          <div className={styles.left_leg}></div>
         </div>
 
         <svg className={styles.svg} xmlns="http://www.w3.org/2000/svg">

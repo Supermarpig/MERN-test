@@ -109,7 +109,7 @@ body::-webkit-scrollbar {
     border: 7px solid black;
 }
 
-.leftleg {
+.left_leg {
     position: absolute;
     left: 1vmin;
     top: 25vmin;
@@ -130,7 +130,7 @@ body::-webkit-scrollbar {
     }
 }
 
-.rightleg {
+.right_leg {
     position: absolute;
     left: 4vmin;
     top: 28vmin;
@@ -149,7 +149,10 @@ body::-webkit-scrollbar {
     height: 100vh;
 }
 
-.textcontainer {
+.text_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     font-family: arial, sans-serif;
     width: auto;
@@ -197,10 +200,17 @@ body::-webkit-scrollbar {
     position: absolute;
     width: max-content;
     left: 120%;
-    margin-top: 5%;
+    margin-top: 10%;
+    transition: 0.5s;
+
+    &:hover {
+        transform: scale(1.3);
+        ;
+    }
 
     a {
-        text-decoration: none;
+        // text-decoration: none;
+        color: #FFF;
     }
 
     span {
