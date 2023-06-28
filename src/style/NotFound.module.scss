@@ -3,6 +3,11 @@
     align-items: center;
     justify-content: center;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .sky {
     position: absolute;
     top: 0;
@@ -12,14 +17,16 @@
     width: 100vw;
     height: 100vh;
 }
+
 .star {
     border-radius: 50%;
     background: white;
     position: absolute;
     animation: star linear infinite;
+
     @for $i from 1 through 70 {
         &:nth-child(#{$i}) {
-            $size: random(7) + 3px;
+            $size: random(7)+3px;
             width: $size;
             height: $size;
             animation-duration: random(30) + 15s;
@@ -28,10 +35,12 @@
         }
     }
 }
+
 @keyframes star {
     from {
         transform: translate3d(-100%, 0, 1px);
     }
+
     to {
         transform: translate3d(100vw, 0, 1px);
     }
@@ -50,6 +59,7 @@
     0% {
         transform: translate3d(-50vmin, -20vmin, 0px) rotate(0turn);
     }
+
     50%,
     100% {
         transform: translate3d(100vw, -20vmin, 0px) rotate(-2turn);
@@ -110,9 +120,11 @@
     background-repeat: no-repeat;
     border-radius: 20vmin;
     background-size: 150% 96%, 100% 100%;
+
     &:not(:nth-child(2)) {
         clip-path: polygon(-10% 110%, 100% 110%, 110% 60%, 70% 20%, -5% 30%);
     }
+
     &:nth-child(2) {
         filter: url(#inset);
     }
@@ -144,22 +156,29 @@
     font-weight: 400;
     font-size: 20px;
     transform: translateY(-50%);
+
     @media (min-width: 600px) {
         font-size: 30px;
+        height: 0px;
+        margin-left: 20%;
     }
 }
 
 .text {
     display: inline;
+
     @for $i from 1 through 20 {
         &:nth-child(#{$i}) {
             animation: type#{$i} 5s linear;
+
             @keyframes type#{$i} {
+
                 0%,
                 #{$i * 1.5 + 20}% {
                     width: 0px;
                     opacity: 0;
                 }
+
                 #{$i * 1.5 + 20.5}%,
                 90% {
                     width: auto;
@@ -170,8 +189,21 @@
     }
 }
 
-.svg {
+// .svg {
+//     position: relative;
+// }
+
+.back2home {
     position: absolute;
+    width: max-content;
+    left: 120%;
+    margin-top: 5%;
+
+    a {
+        text-decoration: none;
+    }
+
+    span {
+        color: #FFF;
+    }
 }
-
-

@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from '../style/NotFound.module.scss';
+import { Link } from 'react-router-dom'
 
 function CustomNotFound() {
   const stars = Array.from({ length: 30 }, (_, index) => index);
   const notFound = '404 Page Not Found.';
   const backToHome = 'back to home';
   return (
-    <div className='container'>
-      <h1>404 Not Found</h1>
-      <>
+
+    <>
       <div className={styles.container}>
         <div className={styles.sky}>
           {stars.map((index) => (
@@ -27,13 +27,18 @@ function CustomNotFound() {
           </h1>
 
           {/* back to home text */}
-          {/* <Link href="/">
-            {[...backToHome].map((char, index) => (
-              <span key={index} className={styles.text}>
-                {char.trim() || ' '}
-              </span>
-            ))}
-          </Link> */}
+          {/* <div> */}
+          {/* <Link to="/home">點擊這裡回到首頁</Link> */}
+          {/* </div> */}
+          <div className={styles.back2home}>
+            <Link to="/home">
+              {[...backToHome].map((char, index) => (
+                <span key={index} className={styles.text}>
+                  {char.trim() || ' '}
+                </span>
+              ))}
+            </Link>
+          </div>
         </div>
 
         {/* astronaut */}
@@ -69,7 +74,7 @@ function CustomNotFound() {
         </svg>
       </div>
     </>
-    </div>
+
   );
 }
 
