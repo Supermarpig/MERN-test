@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 import router from './router';
 
@@ -6,7 +7,9 @@ function App() {
 
   return (
     <div className="App">
-     {outlet || <NoFound />}{/* 添加此行，如果没有匹配到路由，顯示 404 组件 */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {outlet} {/* 如果未匹配到路由，使用 Navigate 進行重定向 */}
+      </Suspense>
     </div>
   );
 }

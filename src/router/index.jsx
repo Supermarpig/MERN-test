@@ -1,8 +1,8 @@
-import React, { lazy } from "react"
+import React, { lazy  } from "react"
 import Home from "../views/Home"
-const NoFound =lazy(()=>import("../views/404"))
+const NoFound = lazy(() => import("../views/404"))
 // Navigate重定向組件
-import { Navigate } from "react-router-dom"
+import { Navigate ,Outlet } from "react-router-dom"
 
 const withLoadingComponent = (comp) => (
   <React.Suspense fallback={<div>Loading...</div>}>
@@ -18,7 +18,11 @@ const routes = [
   },
   {
     path: "/",
-    element: <Home />,
+    element:  (
+      <>
+        <Outlet /> 
+      </>
+    ),
     children: [
       {
         path: "/home",
