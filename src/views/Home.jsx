@@ -1,21 +1,19 @@
 import { useState, useEffect, useRef, React } from 'react'
 import '../style/home.css'
 import { getData, getUrl, getLongUrl, apiUrlPost, userPut, userDelete } from '../api/api'
-import { generateShortUrl, getDataCheck, IsURL } from '../utils/utils'
+import { generateShortUrl, IsURL } from '../utils/utils'
 
 function Home() {
 
   //HOOK
-  const [item, setItem] = useState('');
+  const [item, setItem] = useState([]);
   const [short, setShort] = useState('');
   const [changeUrl, setChangeUrl] = useState('');
 
   const user_input = useRef();
 
   //伺服器的port:
-  let domainName = 'http://127.0.0.1:3001/';
-
-
+  let domainName = 'http://127.0.0.1:5173/';
 
   useEffect(() => {
     getData().then((result) => {
@@ -25,6 +23,7 @@ function Home() {
     })
   }, []);
 
+  // console.log(item)
 
 
   //獲取 user輸入的Url
@@ -51,7 +50,7 @@ function Home() {
       let hasUrl = urlArray.includes(longUrl);
       //如果有一個url 
       if (hasUrl) {
-        getDataCheck();
+        getDataCheck(user_input);
 
       }
 
@@ -146,6 +145,36 @@ function Home() {
       alert('請輸入正確的格式')
     }
   }
+  // 確認Url 是否存在
+  function getDataCheck(user_input) {
+
+    const longUrl = user_input.current.value;
+
+    getUrl(longUrl).then((result) => {
+      // console.log(result.data._id)
+      setChangeUrl(result.data._id);
+      alert('已有相同Url');
+      let oldUrl = result.data._id
+
+
+      //將獲取的ID 弄成短網址
+      // 生成固定的、加密的短網址（例如，長度為 6 位）
+      oldUrl && generateShortUrl(oldUrl, 6)
+        .then(shortUrlTest => {
+          // console.log(shortUrlTest);
+          setShort(shortUrlTest);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+
+
   // --------------------------------------------------------------------------------------
 
   return (
@@ -153,20 +182,38 @@ function Home() {
       <div className='user'>
         <input className='user_input' type="text" ref={user_input}></input>
         <button className='user_check' onClick={shortUrl}>Change</button>
-
-
       </div>
       <div className='user_output'>
         {short && (
           <div className='user_output_div'>
             <a href={`${domainName}${short}`} >{`${domainName}${short}`}</a>
-            {/* <div onClick={longUrl}>{`${domainName}${short}`}</div> */}
           </div>
         )}
-
       </div>
     </div>
   )
 }
 
 export default Home
+
+
+// export function urlId() {
+
+//   const [urlId, setUrlId] = useState('');
+
+//   useEffect(() => {
+//     getData().then((result) => {
+//       setUrlId(result.data)
+//     }).catch(err => {
+//       console.log(err);
+//     })
+//   }, []);
+
+//   let urlArray = [];
+//   urlId && urlId.map((item, index) => {
+//     urlArray.push(item.shortUrl)
+//   })
+//   console.log(urlArray)
+
+//   return urlArray;
+// }
