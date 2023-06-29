@@ -34,3 +34,37 @@ export function sendRequest(method, url, data = null, config) {
   }
 
   
+
+//Get Data
+export const getData = (getID) => {
+  if (getID) {
+    return sendRequest("get", `/getData/${getID}`);
+  } else {
+    return sendRequest("get", "/getData");
+  }
+};
+
+//Get Url Data
+export const getUrl = (getUrl) => {
+  return sendRequest("get", `/getUrl/${encodeURIComponent(getUrl)}`);
+};
+
+//獲取長Url
+export const getLongUrl = (getID) => {
+  return sendRequest("get", `/getOriginalUrl/${getID}`);
+};
+
+//新增
+export const apiUrlPost = (postData) => {
+  return sendRequest("post", "/postData", postData);
+};
+
+//更新
+export const userPut = (putID, putValue) => {
+  return sendRequest("put", `/putData/${putID}`, putValue);
+};
+
+//刪除   ------>目前是刪ID
+export const userDelete = (deleteID) => {
+  return sendRequest("delete", `/deleteData/${deleteID}`);
+};
