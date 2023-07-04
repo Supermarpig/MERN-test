@@ -2,7 +2,7 @@ import React, { lazy } from "react"
 import Home from "../views/Home"
 const NoFound = lazy(() => import("../views/404"))
 // Navigate重定向組件
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
 
 const withLoadingComponent = (comp) => (
   <React.Suspense fallback={<div>Loading...</div>}>
@@ -31,8 +31,8 @@ const routes = [
       },
       {
         path: "/404",
-        element: withLoadingComponent(<NoFound />)
-      }, 
+        element: <NoFound />
+      },
       // {
       //   path: `/${shortUrlId}`, // 使用動態參數
       //   element: <Navigate to={`http://localhost:3001/${shortUrlId}`} /> // 使用動態參數重新指定路徑

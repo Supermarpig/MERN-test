@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, React } from 'react'
 import '../style/home.css'
 import { getData, getUrl, getLongUrl, apiUrlPost, userPut, userDelete } from '../api/api'
 import { generateShortUrl, IsURL } from '../utils/utils'
+import { Link } from 'react-router-dom'
 
 function Home() {
 
@@ -12,8 +13,11 @@ function Home() {
 
   const user_input = useRef();
 
+
+
   //伺服器的port:
   let domainName = 'http://127.0.0.1:5173/';
+  let domainNameServer = 'http://127.0.0.1:3001/';
 
   useEffect(() => {
     getData().then((result) => {
@@ -124,13 +128,7 @@ function Home() {
               console.log(err);
             })
           }, 500);
-
         }
-
-
-
-
-
       }
       // } else {
       // console.log("URL is valid but not accessible.");
@@ -173,7 +171,7 @@ function Home() {
     })
   }
 
-
+  // console.log(short)
 
   // --------------------------------------------------------------------------------------
 
@@ -186,8 +184,10 @@ function Home() {
       <div className='user_output'>
         {short && (
           <div className='user_output_div'>
-            <a href={`${domainName}${short}`} >{`${domainName}${short}`}</a>
+            <Link to={`/${short}`}>{`${domainName}${short}`}</Link>
+            {/* <Redirect from={`${domainName}${short}`} to={`${domainNameServer}${short}`} /> */}
           </div>
+
         )}
       </div>
     </div>
