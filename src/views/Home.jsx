@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, React } from 'react'
 import '../style/home.css'
 import { getData, getUrl, getLongUrl, apiUrlPost, userPut, userDelete } from '../api/api'
 import { generateShortUrl, IsURL } from '../utils/utils'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Home() {
 
@@ -186,6 +186,9 @@ function Home() {
           <div className='user_output_div'>
             <Link to={`/${short}`}>{`${domainName}${short}`}</Link>
             {/* <Redirect from={`${domainName}${short}`} to={`${domainNameServer}${short}`} /> */}
+
+            {/* <Link to={{ pathname: `/${short}` }}>{`${domainName}${short}`}</Link> */}
+            {/* <NavLink to={`/${short}`}>{`${domainName}${short}`}</NavLink> */}
           </div>
 
         )}
