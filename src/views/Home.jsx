@@ -16,8 +16,8 @@ function Home() {
 
 
   //伺服器的port:
-  let domainName = 'http://127.0.0.1:5173/';
-  let domainNameServer = 'http://127.0.0.1:3001/';
+  let domainName = 'https://tiny.zeabur.app/';
+  let domainNameServer = 'https://tiny-server.zeabur.app/';
 
   useEffect(() => {
     getData().then((result) => {
