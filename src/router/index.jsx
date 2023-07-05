@@ -14,7 +14,7 @@ const RedirectComponent = () => {
   const { shortUrlId } = useParams();
 
   useEffect(() => {
-    window.location.href = `https://tiny-server.zeabur.app/${shortUrlId}`;
+    window.location.href = `172.67.160.57:3001/${shortUrlId}`;
   }, [shortUrlId]);
 
   return null; // 可以返回null或其他元素作为占位符

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const urlRequest = axios.create({
-  baseURL: 'https://tiny-server.zeabur.app/api/'
+  baseURL: '172.67.160.57:3001/api/'
 });
 
 const shortUrlRequest = axios.create({
-  baseURL: 'https://tiny-server.zeabur.app/'
+  baseURL: '172.67.160.57:3001/'
 });
 
 // 此處的urlRequest為我們create的實體
