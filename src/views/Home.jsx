@@ -17,7 +17,6 @@ function Home() {
 
   //伺服器的port:
   let domainName = 'https://tiny.zeabur.app/';
-  let domainNameServer = 'https://tiny-server.zeabur.app/';
 
   useEffect(() => {
     getData().then((result) => {
@@ -185,10 +184,6 @@ function Home() {
         {short && (
           <div className='user_output_div'>
             <Link to={`/${short}`}>{`${domainName}${short}`}</Link>
-            {/* <Redirect from={`${domainName}${short}`} to={`${domainNameServer}${short}`} /> */}
-
-            {/* <Link to={{ pathname: `/${short}` }}>{`${domainName}${short}`}</Link> */}
-            {/* <NavLink to={`/${short}`}>{`${domainName}${short}`}</NavLink> */}
           </div>
 
         )}

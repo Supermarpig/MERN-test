@@ -4,9 +4,6 @@ const urlRequest = axios.create({
   baseURL: '172.67.160.57:3001/api/'
 });
 
-const shortUrlRequest = axios.create({
-  baseURL: '172.67.160.57:3001/'
-});
 
 // 此處的urlRequest為我們create的實體
 export function sendRequest(method, url, data = null, config) {
