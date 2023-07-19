@@ -143,22 +143,22 @@ function Home() {
   // }
   const shortUrl = async () => {
     const longUrl = user_input.current.value;
-  
+
     // 檢查輸入的是否為URL
     if (!IsURL(longUrl)) {
       alert('請輸入正確的格式');
       return;
     }
-  
+
     try {
       // 先判斷是否有相同的URL
       const result = await getData();
       const newArray = [...result.data];
       setItem(newArray);
-  
+
       // 檢查是否存在相同的URL
       const hasUrl = newArray.some(item => item.longUrl === longUrl);
-  
+
       if (hasUrl) {
         getDataCheck(user_input);
       } else {
@@ -171,24 +171,24 @@ function Home() {
           shortUrl: ""
         };
         const res = await apiUrlPost(postData);
-  
+
         // 更新資料
         const updatedData = await getData();
         setItem(updatedData.data);
         alert('新增成功');
-  
+
         // 取得短網址
         const result = await getUrl(longUrl);
         setChangeUrl(result.data._id);
         const oldUrl = result.data._id;
-  
+
         // 生成固定的、加密的短網址（例如，長度為 6 位）
         const shortUrlTest = await generateShortUrl(oldUrl, 6);
         setShort(shortUrlTest);
-  
+
         // 更新短網址到資料庫
         await userPut(oldUrl, { shortUrl: shortUrlTest });
-  
+
         // 一分鐘後刪除這筆資料
         setTimeout(async () => {
           await userDelete(oldUrl);
@@ -201,7 +201,7 @@ function Home() {
       alert('操作失敗');
     }
   };
-  
+
   // 確認Url 是否存在
   function getDataCheck(user_input) {
 

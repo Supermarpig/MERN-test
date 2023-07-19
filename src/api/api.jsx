@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const urlRequest = axios.create({
-  baseURL: '172.67.160.57:3001/api/'
+  baseURL: 'https://tiny-server.zeabur.app/api/'
 });
 
 

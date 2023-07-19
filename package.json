@@ -27,5 +27,5 @@
     "sass": "^1.63.5",
     "vite": "^4.3.2"
   },
-  "proxy": "172.67.160.57:3001"
+  "proxy": "tiny-server.zeabur.app:3001"
 }
