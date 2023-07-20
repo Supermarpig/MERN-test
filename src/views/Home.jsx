@@ -25,6 +25,8 @@ function Home() {
     }).catch(err => {
       console.log(err);
     })
+
+    setShort("OBhoRT");
   }, []);
 
   // console.log(item)
