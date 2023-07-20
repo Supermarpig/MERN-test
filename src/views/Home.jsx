@@ -244,7 +244,7 @@ function Home() {
       <div className='user_output'>
         {short && (
           <div className='user_output_div'>
-            <Link to={`/OBhoRT`}>{`${domainName}${short}`}</Link>
+            <Link to={`/${short}`}>{`${domainName}${short}`}</Link>
           </div>
 
         )}
