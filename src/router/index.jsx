@@ -14,11 +14,11 @@ const RedirectComponent = () => {
   const { shortUrlId } = useParams();
 
   useEffect(() => {
-    window.location.href = `https://tiny-server.zeabur.app/${shortUrlId}`; // 修改這裡
+    window.location.assign(`https://tiny-server.zeabur.app/${shortUrlId}`); // 修改這裡
   }, [shortUrlId]);
 
   return null; // 可以返回null或其他元素作為占位符
-}; 
+};
 
 
 const routes = [
