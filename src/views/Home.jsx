@@ -25,8 +25,6 @@ function Home() {
     }).catch(err => {
       console.log(err);
     })
-
-    setShort("OBhoRT");
   }, []);
 
   // console.log(item)
@@ -246,7 +244,7 @@ function Home() {
       <div className='user_output'>
         {short && (
           <div className='user_output_div'>
-            <Link to={`/${short}`}>{`${domainName}${short}`}</Link>
+            <Link to={`/OBhoRT`}>{`${domainName}${short}`}</Link>
           </div>
 
         )}
@@ -256,25 +254,3 @@ function Home() {
 }
 
 export default Home
-
-
-// export function urlId() {
-
-//   const [urlId, setUrlId] = useState('');
-
-//   useEffect(() => {
-//     getData().then((result) => {
-//       setUrlId(result.data)
-//     }).catch(err => {
-//       console.log(err);
-//     })
-//   }, []);
-
-//   let urlArray = [];
-//   urlId && urlId.map((item, index) => {
-//     urlArray.push(item.shortUrl)
-//   })
-//   console.log(urlArray)
-
-//   return urlArray;
-// }
