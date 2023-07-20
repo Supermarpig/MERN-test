@@ -3,9 +3,9 @@ import Home from "../views/Home";
 const NoFound = lazy(() => import("../views/404"));
 import { Navigate, Outlet, useParams } from "react-router-dom";
 
-const withLoadingComponent = (comp) => (
+const withLoadingComponent = (Comp) => (props) => (
   <React.Suspense fallback={<div>Loading...</div>}>
-    {comp}
+    <Comp {...props} />
   </React.Suspense>
 );
 
@@ -14,11 +14,11 @@ const RedirectComponent = () => {
   const { shortUrlId } = useParams();
 
   useEffect(() => {
-    window.location.href = `tiny-server.zeabur.app/${shortUrlId}`;
+    window.location.href = `https://tiny-server.zeabur.app/${shortUrlId}`; // 修改這裡
   }, [shortUrlId]);
 
-  return null; // 可以返回null或其他元素作为占位符
-};
+  return null; // 可以返回null或其他元素作為占位符
+}; 
 
 
 const routes = [

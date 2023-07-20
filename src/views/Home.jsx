@@ -20,6 +20,7 @@ function Home() {
 
   useEffect(() => {
     getData().then((result) => {
+      console.log(result.data)
       setItem(result.data)
     }).catch(err => {
       console.log(err);
