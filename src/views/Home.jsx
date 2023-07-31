@@ -26,7 +26,7 @@ function Home() {
       console.log(err);
     })
 
-    console.log("測試是否有取道資料:")
+    // console.log("測試是否有取道資料:")
   }, []);
   
   const shortUrl = async () => {

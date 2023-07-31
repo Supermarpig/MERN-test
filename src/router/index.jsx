@@ -3,11 +3,14 @@ import Home from "../views/Home";
 const NoFound = lazy(() => import("../views/404"));
 import { Navigate, Outlet, useParams } from "react-router-dom";
 
-const withLoadingComponent = (Comp) => (props) => (
-  <React.Suspense fallback={<div>Loading...</div>}>
-    <Comp {...props} />
-  </React.Suspense>
-);
+const withLoadingComponent = (Comp) => {
+  return (props) => (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Comp {...props} />
+    </React.Suspense>
+  );
+};
+const HomeWithLoading = withLoadingComponent(Home);
 
 //跳轉的function
 const RedirectComponent = () => {
@@ -38,7 +41,7 @@ const routes = [
     children: [
       {
         path: "/home",
-        element: withLoadingComponent(<Home />)
+        element: <HomeWithLoading />
       },
       {
         path: "/404",
